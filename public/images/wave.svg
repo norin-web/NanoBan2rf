@@ -1,0 +1,14 @@
+<svg width="1440" height="560" viewBox="0 0 1440 560" fill="none" xmlns="http://www.w3.org/2000/svg">
+<defs>
+<linearGradient id="g" x1="0" y1="0" x2="1440" y2="0" gradientUnits="userSpaceOnUse">
+<stop stop-color="#0946B9"/><stop offset="0.45" stop-color="#277EFF"/><stop offset="1" stop-color="#0946B9"/></linearGradient>
+<linearGradient id="f" x1="0" y1="120" x2="0" y2="560" gradientUnits="userSpaceOnUse">
+<stop stop-color="#0946B9" stop-opacity="0.55"/><stop offset="1" stop-color="#000" stop-opacity="0"/></linearGradient>
+<filter id="b" x="-10%" y="-40%" width="120%" height="180%"><feGaussianBlur stdDeviation="36"/></filter>
+<filter id="s" x="-5%" y="-40%" width="110%" height="180%"><feGaussianBlur stdDeviation="3"/></filter>
+</defs>
+<path d="M-40 150 C 220 150 380 470 620 450 C 860 430 1040 120 1250 130 C 1360 136 1420 190 1480 240 L1480 560 L-40 560 Z" fill="url(#f)"/>
+<path d="M-40 150 C 220 150 380 470 620 450 C 860 430 1040 120 1250 130 C 1360 136 1420 190 1480 240" stroke="url(#g)" stroke-width="60" filter="url(#b)" opacity="0.8"/>
+<path d="M-40 150 C 220 150 380 470 620 450 C 860 430 1040 120 1250 130 C 1360 136 1420 190 1480 240" stroke="url(#g)" stroke-width="4" filter="url(#s)"/>
+<path d="M-40 150 C 220 150 380 470 620 450 C 860 430 1040 120 1250 130 C 1360 136 1420 190 1480 240" stroke="#9CC2FF" stroke-width="1.2" opacity="0.9"/>
+</svg>
