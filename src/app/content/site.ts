@@ -11,7 +11,7 @@ export const site = {
   // Privacy Policy / Terms. Until then the footer shows the brand only.
   operator: "",
   disclaimer: "",
-  url: "https://norin-web.github.io/NanoBan2rf/",
+  url: "https://nanobananagen.skin/",
 };
 
 export const app = {

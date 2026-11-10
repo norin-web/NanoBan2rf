@@ -7,7 +7,7 @@ Design source: Paper file **"Nano Banana v2 RF"**, page **Promo** (desktop 1440 
 
 ```bash
 pnpm install
-pnpm dev        # http://localhost:5173/NanoBan2rf/
+pnpm dev        # http://localhost:5173/
 pnpm build      # → dist/
 ```
 
@@ -19,9 +19,9 @@ The workflow copies `index.html` to `404.html` so deep links load the app.
 
 ### ⚠️ `base` and the custom domain
 
-- No domain (now): `base: "/NanoBan2rf/"` in `vite.config.ts`, site at `https://norin-web.github.io/NanoBan2rf/`.
-- When a domain is attached in Pages settings: in **one commit** set `base: "/"` **and** add `public/CNAME`
-  with the bare domain; update `site.url`, `canonical` and `og:*` URLs in `index.html`. Otherwise every asset 404s (white screen).
+- Custom domain (now): **https://nanobananagen.skin** — `base: "/"` in `vite.config.ts` + `public/CNAME`.
+- If the domain is ever removed: in **one commit** delete `public/CNAME`, set `base: "/NanoBan2rf/"` and point
+  `site.url`, `canonical` and `og:*` in `index.html` back to `https://norin-web.github.io/NanoBan2rf/`. Otherwise every asset 404s (white screen).
 - All image paths go through `img()` (`src/app/utils/img.ts`), so they follow `base` automatically.
 
 ## Where content lives
