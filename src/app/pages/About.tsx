@@ -1,5 +1,5 @@
 import Reveal from "../components/Reveal";
-import { principles } from "../content/site";
+import { principles, site } from "../content/site";
 import { reduced, usePinnedSteps } from "../utils/motion";
 
 const FIRST = "We build Nano Banana for anyone with an idea.";
@@ -40,6 +40,14 @@ export default function About() {
             <p className="muted">{p.text}</p>
           </Reveal>
         ))}
+        <Reveal className="maker">
+          <h2 className="h-card">Who Makes It</h2>
+          <p className="muted">
+            Nano Banana is made by {site.operator}, an independent developer in Berlin, Germany. Questions and ideas go to{" "}
+            <a className="link" href={`mailto:${site.email}`}>{site.email}</a>.
+          </p>
+          <p className="small dim">{site.disclaimer}</p>
+        </Reveal>
       </section>
     </>
   );

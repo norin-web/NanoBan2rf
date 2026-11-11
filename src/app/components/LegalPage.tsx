@@ -1,7 +1,7 @@
 import { Fragment, useEffect, useMemo, useState, type ReactNode } from "react";
 import { Link } from "react-router";
 import { site } from "../content/site";
-import { legalUpdated } from "../content/legal";
+import { legalOperator, legalUpdated } from "../content/legal";
 import { img } from "../utils/img";
 import Split from "./Split";
 import Btn from "./Btn";
@@ -18,11 +18,20 @@ type Section = { id: string; title: string; blocks: string[] };
 
 const pad = (n: number) => String(n).padStart(2, "0");
 
-// turn plain email addresses into mailto links, text otherwise untouched
+// Inline markup only: **bold** lead-ins, [text](url) links and plain email addresses.
+// The words themselves are rendered exactly as written.
 const linkify = (text: string) =>
-  text.split(/(\S+@\S+\.[a-z]{2,})/i).map((part, i) =>
-    /@/.test(part) ? <a key={i} href={`mailto:${part}`}>{part}</a> : part,
-  );
+  text.split(/(\*\*[^*]+\*\*|\[[^\]]+\]\([^)]+\)|\S+@\S+\.[a-z]{2,})/i).map((part, i) => {
+    const bold = part.match(/^\*\*([^*]+)\*\*$/);
+    if (bold) return <strong key={i}>{bold[1]}</strong>;
+    const link = part.match(/^\[([^\]]+)\]\(([^)]+)\)$/);
+    if (link) return <a key={i} href={link[2]} target="_blank" rel="noopener noreferrer">{link[1]}</a>;
+    if (/^\S+@\S+\.[a-z]{2,}$/i.test(part)) return <a key={i} href={`mailto:${part}`}>{part}</a>;
+    return part;
+  });
+
+// "IN BRIEF" / "PLEASE NOTE" summaries in the documents sit in a quiet panel
+const isNote = (text: string) => /^\*\*(IN BRIEF|PLEASE NOTE)\*\*/.test(text);
 
 const slug = (s: string) => s.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "");
 
@@ -51,7 +60,7 @@ function Block({ text }: { text: string }): ReactNode {
   // all-caps legal clauses get a quiet panel so they don't shout across the page
   const caps = text.length > 40 && text === text.toUpperCase();
   return (
-    <p className={caps ? "legal-caps" : undefined}>
+    <p className={caps ? "legal-caps" : isNote(text) ? "legal-note" : undefined}>
       {text.split("\n").map((line, i) => (
         <Fragment key={i}>
           {i > 0 && <br />}
@@ -96,7 +105,8 @@ export default function LegalPage({ doc }: { doc: Doc }) {
         <span className="eyebrow">Legal</span>
         <Split as="h1" className="h1" parts={[[doc.title]]} />
         <dl className="lhero__meta">
-          <div><dt>Last updated</dt><dd>{legalUpdated || "To be published"}</dd></div>
+          <div><dt>Effective date</dt><dd>{legalUpdated}</dd></div>
+          <div><dt>Operator</dt><dd>{legalOperator}</dd></div>
           <div><dt>Sections</dt><dd>{sections.length}</dd></div>
           <div><dt>Questions</dt><dd><a href={`mailto:${site.email}`}>{site.email}</a></dd></div>
           <div><dt>Also read</dt><dd><Link to={doc.other.to} className="link">{doc.other.label}</Link></dd></div>
@@ -131,7 +141,7 @@ export default function LegalPage({ doc }: { doc: Doc }) {
               <p className="small dim">A short summary for convenience. The full text below is what applies.</p>
             </div>
           )}
-          {intro.map((t, i) => <p className="lsec__intro" key={i}>{linkify(t)}</p>)}
+          {intro.map((t, i) => <p className={`lsec__intro${isNote(t) ? " legal-note" : ""}`} key={i}>{linkify(t)}</p>)}
           {sections.map((s, i) => (
             <section className="lsec" id={s.id} key={s.id}>
               <h2><span className="lsec__n">{pad(i + 1)}</span>{s.title}</h2>

@@ -1,25 +1,26 @@
 // Every brand / app fact lives here so names, IDs and emails are never duplicated.
 // Facts come from the app's own screens (Figma "Nano Banana v2": Home, Create,
-// Edit, Video, AI Chat, History, Choose Style, paywall). Nothing is claimed beyond them.
-// PLACEHOLDER values wait for the owner's documents / the App Store release.
+// Edit, Video, AI Chat, History, Choose Style, paywall) and from the owner's
+// Privacy Policy / Terms of Use (effective 11 November 2026). Nothing is claimed beyond them.
 
 export const site = {
   brand: "Nano Banana",
   email: "sophia@baumgartnerapp.click",
   year: new Date().getFullYear(),
-  // PLACEHOLDER — operator name and the brand disclaimer come from the owner's
-  // Privacy Policy / Terms. Until then the footer shows the brand only.
-  operator: "",
-  disclaimer: "",
+  // Operator and brand authorization as stated in Privacy Policy §1 and Terms §1 / §9.
+  operator: "Sophia Baumgartner",
+  address: "Woltmannweg 18B, 12209 Berlin, Germany",
+  disclaimer:
+    "Nano Banana is a trademark of Google LLC, used under a signed Trademark and Brand Use Authorization Agreement. The app is independently developed and operated by Sophia Baumgartner.",
   url: "https://nanobananagen.skin/",
 };
 
 export const app = {
   id: "6827201844",
   url: "https://apps.apple.com/app/id6827201844",
-  // App isn't live yet (iTunes lookup returns 0 results, 2026-11-10).
-  // After release refresh minIOS / category / size / languages from
-  // https://itunes.apple.com/lookup?id=6827201844 and add them to `specs`.
+  // Not in the App Store yet (iTunes lookup returns 0 results, 2026-11-11), so the
+  // iOS version, size and languages are unknown and simply not shown. After release
+  // refresh them from https://itunes.apple.com/lookup?id=6827201844 and add to `specs`.
   minIOS: "",
   category: "AI image & video creator",
 };
@@ -101,12 +102,15 @@ export const specs: [string, string][] = [
   ["Create", "Image · Edit Image · Text to Video · Image to Video"],
   ["Styles", `${styles.length} styles`],
   ["Formats", formats.join(" · ")],
+  ["AI providers", "fal.ai for images and video · OpenAI for AI Chat"],
+  ["Your data", "History and chats stored on your device"],
+  ["Developer", "Sophia Baumgartner, Berlin"],
 ];
 
 export const principles = [
   { title: "Plain Words", text: "No settings to study. If you can describe it, you can make it." },
-  { title: "Your Results", text: "Save, share or delete any generation whenever you want." },
-  { title: "No Ads", text: "The full app comes without ads, as listed on the subscription screen." },
+  { title: "Your Results", text: "History, favorites and chats stay on your device. Save, share or delete any generation." },
+  { title: "No Ads", text: "The app shows no advertising and has no public gallery." },
 ];
 
 // Answers follow the app's screens; subscription answers follow Apple's rules.
@@ -118,6 +122,8 @@ export const faq = [
   { tag: "History", q: "How do I delete a generation?", a: "Open the result, tap the menu and choose Delete. The generation is permanently deleted and can't be recovered." },
   { tag: "Subscription", q: "How do I cancel my subscription?", a: "Subscriptions are billed through your Apple ID. Open iPhone Settings → your name → Subscriptions → Nano Banana → Cancel. Deleting the app doesn't cancel an active subscription." },
   { tag: "Subscription", q: "How do I restore a purchase on a new iPhone?", a: "Open the subscription screen in the app and tap Restore while signed in with the same Apple ID you used to buy." },
+  { tag: "Privacy", q: "Where are my images and chats stored?", a: "On your iPhone. Generation history, favorites and up to 50 recent AI Chat conversations are kept in the app's local storage on your device, not on a developer server. Deleting the app removes them; files you saved to Photos stay." },
+  { tag: "Privacy", q: "Who processes my prompts and photos?", a: "Only what a feature needs, at the moment you use it: images, edits and videos go to fal.ai, AI Chat messages to OpenAI. Subscriptions run through Apple and Apphud. The Privacy Policy has the details." },
   { tag: "Troubleshooting", q: "A generation failed. What should I do?", a: "Check your internet connection, adjust the prompt and try again. If it keeps failing, write to us and describe what you were creating." },
 ];
 

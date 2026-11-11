@@ -28,9 +28,9 @@ The workflow copies `index.html` to `404.html` so deep links load the app.
 
 - `src/app/content/site.ts` — brand, email, App Store ID/link, features, styles, FAQ, specs. Pages never hard-code facts.
 - `src/app/content/legal.ts` — Privacy Policy and Terms. **Paste the owner's texts verbatim**
-  (only markup changes: `## ` headings, `- ` lists) and set `legalUpdated`. Currently placeholders.
-- PLACEHOLDER: operator name + brand disclaimer (`site.operator`, `site.disclaimer`) and iOS version (`app.minIOS`)
-  — fill in from the documents / the App Store lookup after release.
+  (only markup changes: `## ` headings, `- ` lists, `**bold**` lead-ins, `[text](url)` links) and update `legalUpdated`.
+- Operator, address and the brand disclaimer (`site.operator`, `site.address`, `site.disclaimer`) follow the documents
+  effective 11 November 2026. The iOS version (`app.minIOS`) is unknown until the App Store release; it stays hidden until then.
 
 ## Motion rules
 
